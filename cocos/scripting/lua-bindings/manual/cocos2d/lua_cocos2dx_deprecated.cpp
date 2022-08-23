@@ -1555,6 +1555,57 @@ tolua_lerror:
 #endif
 }
 
+static int tolua_Cocos2d_CCLuaLog00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+	tolua_Error tolua_err;
+	if (
+		!tolua_isstring(tolua_S, 1, 0, &tolua_err) ||
+		!tolua_isnoobj(tolua_S, 2, &tolua_err)
+		)
+		goto tolua_lerror;
+	else
+#endif
+	{
+		const char* pszFormat = ((const char*)tolua_tostring(tolua_S, 1, 0));
+		{
+			LuaLog(pszFormat);
+		}
+	}
+	return 0;
+#ifndef TOLUA_RELEASE
+	tolua_lerror :
+	tolua_error(tolua_S, "#ferror in function 'CCLuaLog'.", &tolua_err);
+	return 0;
+#endif
+}
+
+static int tolua_Cocos2d_CCMessageBox00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+	tolua_Error tolua_err;
+	if (
+		!tolua_isstring(tolua_S, 1, 0, &tolua_err) ||
+		!tolua_isstring(tolua_S, 2, 0, &tolua_err) ||
+		!tolua_isnoobj(tolua_S, 3, &tolua_err)
+		)
+		goto tolua_lerror;
+	else
+#endif
+	{
+		const char* pszMsg = ((const char*)tolua_tostring(tolua_S, 1, 0));
+		const char* pszTitle = ((const char*)tolua_tostring(tolua_S, 2, 0));
+		{
+			MessageBox(pszMsg, pszTitle);
+		}
+	}
+	return 0;
+#ifndef TOLUA_RELEASE
+	tolua_lerror :
+	tolua_error(tolua_S, "#ferror in function 'CCMessageBox'.", &tolua_err);
+	return 0;
+#endif
+}
 
 static int tolua_Cocos2d_CCString_intValue00(lua_State* tolua_S)
 {
@@ -4376,6 +4427,8 @@ int register_all_cocos2dx_deprecated(lua_State* tolua_S)
     tolua_function(tolua_S,"kmGLTranslatef",tolua_cocos2d_kmGLTranslatef00);
     tolua_function(tolua_S,"kmGLPopMatrix",tolua_cocos2d_kmGLPopMatrix00);
     tolua_function(tolua_S,"kmGLLoadMatrix",tolua_cocos2d_kmGLLoadMatrix00);
+	tolua_function(tolua_S, "CCLuaLog", tolua_Cocos2d_CCLuaLog00);
+	tolua_function(tolua_S, "CCMessageBox", tolua_Cocos2d_CCMessageBox00);
     tolua_endmodule(tolua_S);
 
     return 0;
