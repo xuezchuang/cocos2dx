@@ -100,7 +100,7 @@ end
 
 -- cocosbuilder
 require "cocos.cocosbuilder.CCBReaderLoad"
-
+--os.execute("pause")
 -- physics3d
 require "cocos.physics3d.physics3d-constants"
 

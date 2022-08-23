@@ -644,7 +644,7 @@ public:
      *  @param filename The path of the file, it could be a relative or absolute path.
      *  @return True if the file exists, false if not.
      */
-    virtual bool isFileExist(const std::string& filename) const;
+    virtual bool isFileExist(const std::string& filename);
 
     /**
      * Checks if a file exists, done async off the main cocos thread.

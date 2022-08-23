@@ -265,6 +265,9 @@ int LuaStack::executeScriptFile(const char* filename)
     // 1. check .luac suffix
     // 2. check .lua suffix
     //
+
+    //bool btemp = utils->isPopupNotify();
+    //utils->setPopupNotify(false);
     std::string tmpfilename = buf + BYTECODE_FILE_EXT;
     if (utils->isFileExist(tmpfilename))
     {
@@ -278,6 +281,7 @@ int LuaStack::executeScriptFile(const char* filename)
             buf = tmpfilename;
         }
     }
+    //utils->setPopupNotify(btemp);
 
     std::string fullPath = utils->fullPathForFilename(buf);
     Data data = utils->getDataFromFile(fullPath);

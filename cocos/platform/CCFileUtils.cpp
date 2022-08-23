@@ -846,9 +846,9 @@ std::string FileUtils::fullPathForFilename(const std::string &filename) const
         }
     }
 
-    if(isPopupNotify()){
-        CCLOG("cocos2d: fullPathForFilename: No file found at %s. Possible missing file.", filename.c_str());
-    }
+	if (isPopupNotify()) {
+		CCLOG("cocos2d: fullPathForFilename: No file found at %s. Possible missing file.", filename.c_str());
+	}
 
     // The file wasn't found, return empty string.
     return "";
@@ -1045,7 +1045,7 @@ std::string FileUtils::getFullPathForDirectoryAndFilename(const std::string& dir
     return ret;
 }
 
-bool FileUtils::isFileExist(const std::string& filename) const
+bool FileUtils::isFileExist(const std::string& filename) /*const*/
 {
     if (isAbsolutePath(filename))
     {
@@ -1053,7 +1053,10 @@ bool FileUtils::isFileExist(const std::string& filename) const
     }
     else
     {
+        bool btemp = isPopupNotify();
+        setPopupNotify(false);
         std::string fullpath = fullPathForFilename(filename);
+        setPopupNotify(btemp);
         if (fullpath.empty())
             return false;
         else
